@@ -19,3 +19,9 @@ def test_build_writes_the_site_and_version(tmp_path):
     out = build.build("abc1234", "7", tmp_path / "dist")
     assert (out / "index.html").exists()
     assert json.loads((out / "version.json").read_text())["sha"] == "abc1234"
+
+def test_every_file_the_page_fetches_is_built(tmp_path):
+    import re
+    out = build.build("t", "0", tmp_path / "dist")
+    for f in re.findall(r'fetch\("([^"]+)"\)', (out / "index.html").read_text()):
+        assert (out / f).exists(), f"the page loads {f}, the build doesn't make it"
