@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Ankura Health · clinic timings</title></head>
+<body>
+<h1>Ankura Health clinic timings</h1>
+<p><a id="book" href="https://book.ankura.example/appointments">Book an appointment</a></p>
+<ul id="clinics"><li>Loading…</li></ul>
+<p id="version"></p>
+<script>
+fetch("timings.json").then(r => r.json()).then(list => {
+  document.getElementById("clinics").innerHTML = list.map(c => "<li>" + c.name + ": " + c.open + " to " + c.close + "</li>").join("");
+}).catch(() => { document.getElementById("clinics").innerHTML = "<li>Timings unavailable. Please call your clinic.</li>"; });
+fetch("version.json").then(r => r.json()).then(v => { document.getElementById("version").textContent = "version " + v.sha.slice(0, 7); });
+</script>
+</body>
+</html>
