@@ -5,7 +5,7 @@ import build
 
 
 def test_good_timings_have_no_problems():
-    clinics = json.loads(Path("site/timings.json").read_text())
+    clinics = json.loads(Path("site/clinic-timings.json").read_text())
     assert build.check_timings(clinics) == []
 
 

@@ -3,7 +3,7 @@ import argparse, json, re, shutil, sys, time
 from pathlib import Path
 
 SITE = Path("site")
-DATA = "timings.json"
+DATA = "clinic-timings.json"
 TIME = re.compile(r"^([01]\d|2[0-3]):[0-5]\d$")
 
 
